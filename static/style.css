@@ -1,0 +1,38 @@
+body {
+    text-align: center;
+    background-color: #f7f7f7;
+    font-family:'Courier New', Courier, monospace;
+    padding: 20px;
+}
+
+h1 {
+    color: #3498db;
+}
+
+.ui.form {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.field {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+textarea {
+    min-height: 200px;
+}
