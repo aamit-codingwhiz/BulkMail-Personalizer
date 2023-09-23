@@ -1,38 +1,24 @@
-body {
-    text-align: center;
-    background-color: #f7f7f7;
-    font-family:'Courier New', Courier, monospace;
-    padding: 20px;
+body>.ui.container {
+    margin-top: 3em;
 }
 
-h1 {
-    color: #3498db;
-}
-
-.ui.form {
-    width: 70%;
-    margin: 0 auto;
-}
-
-.field {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-button[type="submit"] {
-    background-color: #3498db;
-    color: white;
+iframe {
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    width: calc(100% + 2em);
+    margin: 0em -1em;
+    height: 300px;
 }
 
-button[type="submit"]:hover {
-    background-color: #2980b9;
+iframe html {
+    overflow: hidden;
 }
 
-textarea {
-    min-height: 200px;
+iframe body {
+    padding: 0em;
+}
+
+.ui.container>h1 {
+    font-size: 3em;
+    text-align: center;
+    font-weight: normal;
 }

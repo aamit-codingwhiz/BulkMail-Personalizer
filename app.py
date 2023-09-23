@@ -22,6 +22,8 @@ def send_emails():
     if csv_file.filename == '':
         return redirect(url_for('index'))
 
+    sender_mail_address = request.form['sender_mail_address']
+    sender_mail_password = request.form['sender_mail_password']
     email_content = request.form['email_content']
 
     try:
@@ -37,17 +39,18 @@ def send_emails():
                     personalized_content = personalized_content.replace(
                         placeholder, str(column_value))
 
-            send_email(recipient_email, 'Your Subject', personalized_content)
+            send_email(sender_mail_address, sender_mail_password,
+                       recipient_email, 'Your Subject', personalized_content)
 
         return 'Emails sent successfully!'
     except Exception as e:
         return f'Error: {str(e)}'
 
 
-def send_email(recipient_email, subject, body):
+def send_email(sender_mail_address, sender_mail_password, recipient_email, subject, body):
     try:
-        your_email = 'your_email@example.com'
-        your_password = 'your_password'
+        your_email = sender_mail_address
+        your_password = sender_mail_password
         yag = yagmail.SMTP(your_email, your_password)
 
         yag.send(
