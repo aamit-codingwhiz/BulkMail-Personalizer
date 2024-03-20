@@ -17,8 +17,9 @@
 <body>
     <div class="ui container">
         <h1 class="ui center aligned header">Bulk Email Sender</h1>
+
         <form action="/send_emails" method="POST" enctype="multipart/form-data">
-            <div class="ui blue segment">
+            <div class="ui inverted segment">
                 <h3 class="ui left aligned header">Sender</h3>
                 <div class="ui form">
                     <div class="field">
@@ -36,12 +37,20 @@
                 </div>
             </div>
 
+            <div class="ui divider"></div>
+
 
 
             <div class="ui blue segment">
                 <div class="ui form">
                     <div class="field">
+                        <div class="ui floating message">
+                            <p>Accepted only CSV file.</p>
+                        </div>
                         <input type="file" name="csv_file" accept=".csv" required>
+                    </div>
+                    <div class="field">
+                        <input type="text" name="email_subject" id="" placeholder="Enter your email Subject">
                     </div>
                     <div class="field">
                         <textarea name="email_content" placeholder="Enter your email content...
@@ -52,15 +61,14 @@ Hello {name},
 We are excited to inform you that {company} has a special offer for you!
 
 Best regards,
-Your Company
-" rows="10" required></textarea>
+Your Company" rows="12" required></textarea>
                     </div>
-                    <div class="field">
-                        <button type="submit">Send Emails</button>
-                    </div>
+
+                    <button type="submit" class="ui fluid positive button">Send Emails</button>
                 </div>
             </div>
-        </form>
+    </div>
+    </form>
     </div>
 </body>
 

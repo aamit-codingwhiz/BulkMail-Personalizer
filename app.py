@@ -1,9 +1,6 @@
 import yagmail
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 
@@ -24,6 +21,7 @@ def send_emails():
 
     sender_mail_address = request.form['sender_mail_address']
     sender_mail_password = request.form['sender_mail_password']
+    email_subject = request.form['email_subject']
     email_content = request.form['email_content']
 
     try:
@@ -32,15 +30,21 @@ def send_emails():
         for index, row in df.iterrows():
             recipient_email = row['email']
             personalized_content = email_content
+            personalized_subject = email_subject
 
             for column_name, column_value in row.items():
                 placeholder = f'{{{column_name}}}'
+                
                 if placeholder in personalized_content:
                     personalized_content = personalized_content.replace(
                         placeholder, str(column_value))
+                
+                if placeholder in personalized_subject:
+                    personalized_subject = personalized_subject.replace(
+                        placeholder, str(column_value))
 
             send_email(sender_mail_address, sender_mail_password,
-                       recipient_email, 'Your Subject', personalized_content)
+                       recipient_email, personalized_subject, personalized_content)
 
         return 'Emails sent successfully!'
     except Exception as e:
@@ -62,9 +66,6 @@ def send_email(sender_mail_address, sender_mail_password, recipient_email, subje
         print(f"Email sent to {recipient_email}")
     except Exception as e:
         print(f"Error sending email to {recipient_email}: {str(e)}")
-
-    # Example usage:
-    # send_email('recipient@example.com', 'Your Subject', 'Your Email Body')
 
 
 if __name__ == '__main__':
