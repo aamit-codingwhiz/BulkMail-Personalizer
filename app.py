@@ -12,6 +12,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 
 
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -46,7 +50,7 @@ def send_emails():
     save_location = os.path.join(app.config['UPLOAD_FOLDER'], email_attachments.filename)
     email_attachments.save(save_location)
     email_attachments = save_location
-    print(type(save_location))
+    # print(type(save_location))
 
     try:
         df = pd.read_csv(csv_file_location)
